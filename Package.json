@@ -1,0 +1,25 @@
+{
+  "name": "mt-console",
+  "description": "Console application for mt-downloader",
+  "version": "0.0.0",
+  "author": {
+    "name": "Tushar Mathur <tusharmath@gmail.com>",
+    "url": "http://tusharm.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tusharmath/Multi-threaded-downloader.git"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "bin": {
+    "mtdtest": "./Console"
+  },
+  "dependencies": {
+    "grunt-release": "*",
+    "underscore": "*",
+    "operetta": "*",
+    "mt-downloader": "*"
+  }
+}
