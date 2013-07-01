@@ -1,6 +1,6 @@
 mtd-console
 ===========
 
-A console application for mt-downloader
+A console application for [mt-downloader](https://github.com/tusharmath/Multi-threaded-downloader)
 
-[Read me](http://tusharm.com/articles/mtd-console)
+Checkout the [Docs](http://tusharm.com/articles/mtd-console)
