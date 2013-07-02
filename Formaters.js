@@ -21,10 +21,10 @@ exports.remainingTimeFormater = function(seconds) {
 
 exports.byteFormater = function(bytes) {
 	var str;
-	if (speed > 1024 * 1024 * 1024) str = _floor(speed * 100 / (1024 * 1024 * 1024)) / 100 + ' GB';
-	else if (speed > 1024 * 1024) str = _floor(speed * 100 / (1024 * 1024)) / 100 + ' MB';
-	else if (speed > 1024) str = _floor(speed * 100 / 1024) / 100 + ' KB';
-	else str = _floor(speed) + ' Bytes';
+	if (bytes > 1024 * 1024 * 1024) str = _floor(bytes * 100 / (1024 * 1024 * 1024)) / 100 + ' GB';
+	else if (bytes > 1024 * 1024) str = _floor(bytes * 100 / (1024 * 1024)) / 100 + ' MB';
+	else if (bytes > 1024) str = _floor(bytes * 100 / 1024) / 100 + ' KB';
+	else str = _floor(bytes) + ' Bytes';
 	return str;
 
 };

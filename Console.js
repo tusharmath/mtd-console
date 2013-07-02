@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-var mtd = require('mt-downloader');
+var mtd = require('../Node.Downloader');
 var Analytics = require('./analytics');
 var Operetta = require("operetta").Operetta;
+var Formater = require('./Formaters');
 operetta = new Operetta();
 
 operetta.banner = 'A multi thread Http Downloader\n';
@@ -23,7 +24,7 @@ var _newDownload = function(values) {
 		},
 		onStart: function(response) {
 			console.log('Download started');
-			console.log('Download Size:', response.downloadSize, 'bytes');
+			console.log('Download Size:', Formater.byteFormater(response.downloadSize));
 			analytics.start();
 		}
 	};
