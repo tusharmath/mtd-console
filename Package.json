@@ -20,6 +20,7 @@
     "grunt-release": "*",
     "underscore": "*",
     "operetta": "*",
-    "mt-downloader": "*"
+    "mt-downloader": "*",
+    "moment":"*"
   }
 }

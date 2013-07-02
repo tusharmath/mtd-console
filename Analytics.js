@@ -1,4 +1,6 @@
 var _ = require('underscore');
+
+var Formater = require('./Formaters');
 var Analytics = function() {
 	this.bytes = 0;
 	this.size = 0;
@@ -6,25 +8,8 @@ var Analytics = function() {
 	this.eta = 0;
 	this.speed = 0;
 };
+
 var interval = 1000;
-
-var _ceil = function(val) {
-	return Math.ceil(val);
-};
-
-var _formatSpeed = function(speed) {
-
-	var str;
-	if (speed > 1024 * 1024) str = _ceil(speed / (1024 * 1024)) + ' mbps';
-	if (speed > 1024) str = _ceil(speed / 1024) + ' kbps';
-	else str = _ceil(speed) + ' bps';
-	return str + ' ';
-};
-
-
-var _formatTime = function(seconds) {
-	return _ceil(seconds) + 's ';
-};
 
 
 var _logInline = function(str) {
@@ -34,24 +19,29 @@ var _logInline = function(str) {
 };
 
 var _display = function() {
-	this.elapsed += (interval / 1000);
-	_logInline(this.completed + '% ' + _formatSpeed(this.speed) + _formatTime(this.elapsed) + _formatTime(this.eta));
+	var str = Formater.rightPad([
+	this.completed + '%',
+	Formater.speedFormater(this.speed),
+	Formater.elapsedTimeFormater(this.elapsed),
+	Formater.remainingTimeFormater(this.eta)]);
+	_logInline(str);
 };
-
 
 
 var _start = function() {
 	var self = this;
 	self.elapsed = 0;
 	this.timer = setInterval(function() {
+		self.elapsed += (interval / 1000);
 		_display.call(self);
 	}, interval);
+	console.log(Formater.rightPad(['Completed', 'Speed', 'Time', 'ETA']));
 };
 
 var _stop = function() {
 	clearInterval(this.timer);
 	_display.call(this);
-	console.log('\n');
+	console.log();
 };
 
 
@@ -63,9 +53,9 @@ var _updateThreads = function(threads) {
 	}, 0);
 
 	this.size = _.last(threads).end - _.first(threads).start;
-	this.completed = _ceil(this.bytes * 100 / this.size);
+	this.completed = Math.floor(this.bytes * 10000 / this.size) / 100;
 	this.speed = this.bytes / this.elapsed;
-	this.eta = (this.bytes - this.size) / this.speed;
+	this.eta = -(this.bytes - this.size) / this.speed;
 
 };
 

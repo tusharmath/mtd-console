@@ -13,13 +13,18 @@ var _newDownload = function(values) {
 	//console.log(values);
 	var analytics = new Analytics();
 	var options = {
-		count: values.count,
-		method: values.method,
-		port: values.port,
-		range: values.range,
-		timeout: values.timeout,
+		count: values['-c'],
+		method: values['-m'],
+		port: values['-p'],
+		range: values['-r'],
+		timeout: values['-t'],
 		onThreadChange: function(threads) {
 			analytics.updateThreads(threads);
+		},
+		onStart: function(response) {
+			console.log('Download started');
+			console.log('Download Size:', response.downloadSize, 'bytes');
+			analytics.start();
 		}
 	};
 	var url = values['-u'][0];
@@ -28,32 +33,40 @@ var _newDownload = function(values) {
 
 
 
-	downloader.callback = function() {
-		analytics.stop();
-		console.log('Download complete:', file);
-	};
+	downloader.callback = function(err, result) {
 
+		analytics.stop();
+		if (err) {
+			console.log('Download failed:', err);
+		} else {
+			console.log('Download complete:', file);
+		}
+	};
+	console.log('Starting...');
 	downloader.start();
-	analytics.start();
-	console.log('Download started:', url);
+
+
 };
 
 
 var _oldDownload = function(values) {
-
-
-	var file = values.file;
-	var downloader = new mtd(file);
+	//console.log(values);
+	var analytics = new Analytics();
+	var file = values['-f'][0];
+	var downloader = new mtd(file, null, {
+		onThreadChange: function(threads) {
+			analytics.updateThreads(threads);
+		}
+	});
 	downloader.callback = function(err, result) {
-		console.log('Download complete:', values.file);
+		analytics.stop();
+		console.log('Download complete:', file);
 	};
 
-	downloader.onStart = function() {
-		console.log('Download Started');
-	};
 
 	downloader.start();
-	console.log('Download started:', values.url);
+	analytics.start();
+	console.log('Download starting...');
 
 };
 
@@ -70,7 +83,7 @@ var _newDownloadCommand = function(command) {
 };
 
 var _oldDownloadCommand = function(command) {
-	command.parameters(['-f', '-file'], 'Path to a .mtd file');
+	command.parameters(['-f', '--file'], 'Path to a .mtd file');
 	command.start(_oldDownload);
 };
 
