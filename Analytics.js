@@ -1,68 +1,131 @@
 var _ = require('underscore');
-
-var Formater = require('./Formaters');
-var Analytics = function() {
-	this.bytes = 0;
-	this.size = 0;
-	this.completed = 0;
-	this.eta = 0;
-	this.speed = 0;
-};
-
 var interval = 1000;
+var Display = require('./Display');
 
 
-var _logInline = function(str) {
-	process.stdout.clearLine(); // clear current text
-	process.stdout.cursorTo(0); // move cursor to beginning of line
-	process.stdout.write(str.toString()); // write text
+
+var _downloaded = function() {
+	return _.reduce(this.threads, function(bytes, thread) {
+		return bytes + thread.position - thread.start;
+	}, 0);
 };
 
-var _display = function() {
-	var str = Formater.rightPad([
-	this.completed + '%',
-	Formater.speedFormater(this.speed),
-	Formater.elapsedTimeFormater(this.elapsed),
-	Formater.remainingTimeFormater(this.eta)]);
-	_logInline(str);
+//Should be called on start
+var _past_downloaded = function() {
+	this.past.downloaded = _downloaded.call(this);
+};
+
+var _total_size = function() {
+	this.total.size = _.last(this.threads).end - _.first(this.threads).start;
+};
+
+//Should be called everytime
+var _present_time = function() {
+	this.present.time += (interval / 1000);
+};
+
+var _total_downloaded = function() {
+	this.total.downloaded = _downloaded.call(this);
+	//console.log(this.total.downloaded);
+};
+
+var _present_downloaded = function() {
+	this.present.downloaded = this.total.downloaded - this.past.downloaded;
+	//console.log(this.present.downloaded);
+};
+
+var _total_completed = function() {
+	this.total.completed = Math.floor((this.total.downloaded) * 10000 / this.total.size) / 100;
 };
 
 
-var _start = function() {
+var _future_remaining = function() {
+	this.future.remaining = this.total.size - this.total.downloaded;
+};
+
+var _present_speed = function() {
+	this.present.speed = this.present.downloaded / this.present.time;
+};
+
+var _future_eta = function() {
+	//console.log('remaining:', this.future.remaining, this.present.speed);
+	this.future.eta = this.future.remaining / this.present.speed;
+};
+
+var _present_threadStatus = function() {
+	this.present.threadStatus = _.reduce(this.threads, function(memo, thread) {
+		memo[thread.connection]++;
+		return memo;
+	}, {
+		open: 0,
+		closed: 0,
+		failed: 0
+	});
+};
+
+
+var Analytics = function() {
+	this.past = {
+		downloaded: 0
+	};
+
+	this.present = {
+		downloaded: 0,
+		time: 0
+	};
+
+	this.future = {};
+	this.total = {};
+	this.elapsed = 0;
+};
+
+var _init = function(threads) {
+	this.threads = threads;
+	_past_downloaded.call(this);
+	_total_size.call(this);
+};
+
+var _update = function() {
+	_present_time.call(this);
+	_total_downloaded.call(this);
+	_present_downloaded.call(this);
+	_total_completed.call(this);
+	_future_remaining.call(this);
+	_present_speed.call(this);
+	_future_eta.call(this);
+	_present_threadStatus.call(this);
+};
+
+var _start = function(threads) {
 	var self = this;
-	self.elapsed = 0;
-	this.timer = setInterval(function() {
-		self.elapsed += (interval / 1000);
-		_display.call(self);
+
+	_init.call(self, threads);
+	Display.newLine();
+	self.timer = setInterval(function() {
+		_update.call(self);
+		Display.show(self);
 	}, interval);
-	console.log(Formater.rightPad(['Completed', 'Speed', 'Time', 'ETA']));
+
+	Display.header();
 };
 
 var _stop = function() {
-	clearInterval(this.timer);
-	_display.call(this);
-	console.log();
-};
+	if (this.timer) {
+		clearInterval(this.timer);
+		_update.call(this);
+		Display.show(this);
+		Display.newLine();
+		Display.newLine();
 
+		// console.log('present', this.present);
+		// console.log('past', this.past);
+		// console.log('future', this.future);
+		// console.log('total', this.total);
+		//console.log('threads:', this.threads);
 
-
-var _updateThreads = function(threads) {
-	//console.log('d');
-	this.bytes = _.reduce(threads, function(bytes, thread) {
-		return bytes + thread.position - thread.start;
-	}, 0);
-
-	this.size = _.last(threads).end - _.first(threads).start;
-	this.completed = Math.floor(this.bytes * 10000 / this.size) / 100;
-	this.speed = this.bytes / this.elapsed;
-	this.eta = -(this.bytes - this.size) / this.speed;
-
+	}
 };
 
 Analytics.prototype.start = _start;
 Analytics.prototype.stop = _stop;
-Analytics.prototype.updateThreads = _updateThreads;
-
-
-
 module.exports = Analytics;

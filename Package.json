@@ -1,7 +1,7 @@
 {
   "name": "mt-console",
   "description": "Console application for mt-downloader",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": {
     "name": "Tushar Mathur <tusharmath@gmail.com>",
     "url": "http://tusharm.com"
@@ -14,7 +14,7 @@
     "node": ">= 0.10.0"
   },
   "bin": {
-    "mtdtest": "./Console"
+    "mtd": "./Console.js"
   },
   "dependencies": {
     "grunt-release": "*",

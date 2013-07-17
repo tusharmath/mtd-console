@@ -1,95 +1,67 @@
 #!/usr/bin/env node
 
-var mtd = require('../Node.Downloader');
+var mtd = require('mt-downloader');
 var Analytics = require('./analytics');
-var Operetta = require("operetta").Operetta;
+var optimist = require("optimist");
 var Formater = require('./Formaters');
-operetta = new Operetta();
-
-operetta.banner = 'A multi thread Http Downloader\n';
+var _ = require('underscore');
 
 
 
-var _newDownload = function(values) {
-	//console.log(values);
-	var analytics = new Analytics();
-	var options = {
-		count: values['-c'],
-		method: values['-m'],
-		port: values['-p'],
-		range: values['-r'],
-		timeout: values['-t'],
-		onThreadChange: function(threads) {
-			analytics.updateThreads(threads);
-		},
-		onStart: function(response) {
-			console.log('Download started');
-			console.log('Download Size:', Formater.byteFormater(response.downloadSize));
-			analytics.start();
-		}
-	};
-	var url = values['-u'][0];
-	var file = values['-f'][0];
-	var downloader = new mtd(file, url, options);
+var analytics = new Analytics();
 
+var _onStart = function(response) {
+	console.log('Size:', Formater.byteFormater(response.size));
+	analytics.start(response.threads);
+};
 
+var _onEnd = function(err, result) {
+	analytics.stop();
+	if (err) console.error(err);
+	else console.log('File:', argv.file);
+};
 
-	downloader.callback = function(err, result) {
-
-		analytics.stop();
-		if (err) {
-			console.log('Download failed:', err);
-		} else {
-			console.log('Download complete:', file);
-		}
-	};
-	console.log('Starting...');
+var _startDownload = function(cParams) {
+	cParams.onStart = _onStart;
+	cParams.onEnd = _onEnd;
+	var downloader = new mtd(cParams.file, cParams.url, cParams);
 	downloader.start();
-
-
+	console.log('\nMTD Started');
 };
 
 
-var _oldDownload = function(values) {
-	//console.log(values);
-	var analytics = new Analytics();
-	var file = values['-f'][0];
-	var downloader = new mtd(file, null, {
-		onThreadChange: function(threads) {
-			analytics.updateThreads(threads);
-		}
-	});
-	downloader.callback = function(err, result) {
-		analytics.stop();
-		console.log('Download complete:', file);
-	};
+var argv = optimist.usage('A console app for mt-downloader', {
+	'url': {
+		description: 'Download url',
+		short: 'u'
+	},
+	'file': {
+		description: 'File location on disk',
+		short: 'f'
+	},
+	'count': {
+		description: 'Threads count [default: 32]',
+		short: 'c'
+	},
+	'range': {
+		description: 'Data download range [default: 0-100]',
+		short: 'r'
+	},
+	'port': {
+		description: 'Http Port [default: 80]',
+		short: 'p'
+	},
+	'method': {
+		description: 'Http method [default: GET]',
+		short: 'm'
+	}
+})
+	.usage('usage:\t$0 [--file[=<path>]] [--url[=<url>]] \tStart a new download\n\t$0 [--file[=<path>]]\t\t\tResume an old download using a .mtd file')
+	.argv;
 
 
-	downloader.start();
-	analytics.start();
-	console.log('Download starting...');
-
-};
-
-var _newDownloadCommand = function(command) {
-	command.parameters(['-u', '--url'], 'download url');
-	command.parameters(['-f', '--file'], 'download path');
-	command.parameters(['-c', '--count'], 'threads count [default: 32]');
-	command.parameters(['-r', '--range'], 'data download range [default: 0-100]');
-	command.parameters(['-p', '--port'], 'http Port [default: 80]');
-	command.parameters(['-m', '--method'], 'http method [default: GET]');
-	command.parameters(['-t', '--timeout'], 'Ddownload timeout [default: 5000]');
-
-	command.start(_newDownload);
-};
-
-var _oldDownloadCommand = function(command) {
-	command.parameters(['-f', '--file'], 'Path to a .mtd file');
-	command.start(_oldDownload);
-};
-
-
-
-operetta.command('start', 'Start a new download', _newDownloadCommand);
-operetta.command('resume', 'Resume an old download', _oldDownloadCommand);
-operetta.start();
+if (!argv.file) {
+	optimist.showHelp();
+} else {
+	_startDownload(argv);
+}
