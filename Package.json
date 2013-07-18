@@ -1,27 +1,29 @@
 {
-	"name": "mt-console",
-	"description": "A Console application for mt-downloader",
-	"version": "0.0.1",
-	"author": {
-		"name": "Tushar Mathur <tusharmath@gmail.com>",
-		"url": "http://tusharm.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/tusharmath/Multi-threaded-downloader.git"
-	},
-	"engines": {
-		"node": ">= 0.10.0"
-	},
-	"bin": {
-		"mtd": "./Console.js"
-	},
-	"preferGlobal": true,
-	"dependencies": {
-		"grunt-release": "*",
-		"underscore": "*",
-		"optimist": "*",
-		"mt-downloader": "*",
-		"moment": "*"
-	}
+  "name": "mt-console",
+  "description": "A Console application for mt-downloader",
+  "version": "0.0.2",
+  "author": {
+    "name": "Tushar Mathur <tusharmath@gmail.com>",
+    "url": "http://tusharm.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tusharmath/Multi-threaded-downloader.git"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "bin": {
+    "mtd": "./Console.js"
+  },
+  "preferGlobal": true,
+  "dependencies": {
+    "underscore": "*",
+    "optimist": "*",
+    "mt-downloader": "*",
+    "moment": "*"
+  },
+  "devDependencies": {
+    "grunt-release": "*"
+  }
 }
