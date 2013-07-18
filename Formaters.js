@@ -7,7 +7,6 @@ var _floor = function(val) {
 };
 
 var _rightPad = function(memo, str) {
-	//console.log('>>>>' +  str);
 	return memo + str + (new Array(col - str.length)).join(' ');
 };
 

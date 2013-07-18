@@ -26,12 +26,10 @@ var _present_time = function() {
 
 var _total_downloaded = function() {
 	this.total.downloaded = _downloaded.call(this);
-	//console.log(this.total.downloaded);
 };
 
 var _present_downloaded = function() {
 	this.present.downloaded = this.total.downloaded - this.past.downloaded;
-	//console.log(this.present.downloaded);
 };
 
 var _total_completed = function() {
@@ -48,7 +46,6 @@ var _present_speed = function() {
 };
 
 var _future_eta = function() {
-	//console.log('remaining:', this.future.remaining, this.present.speed);
 	this.future.eta = this.future.remaining / this.present.speed;
 };
 
@@ -116,13 +113,6 @@ var _stop = function() {
 		Display.show(this);
 		Display.newLine();
 		Display.newLine();
-
-		// console.log('present', this.present);
-		// console.log('past', this.past);
-		// console.log('future', this.future);
-		// console.log('total', this.total);
-		//console.log('threads:', this.threads);
-
 	}
 };
 
