@@ -1,9 +1,8 @@
-mt-console
-===========
+#mt-console
 
-A platform independent console application for [mt-downloader](https://github.com/tusharmath/Multi-threaded-downloader). This app is only an abstraction of what the original library can do. To get a complete list of features you should see [mt-downloader](https://github.com/tusharmath/Multi-threaded-downloader)
+A platform independent console application for [mt-downloader](https://github.com/tusharmath/Multi-threaded-downloader). This app is only an abstraction of what the original library can do. To get a complete list of features you should see [mt-downloader](https://github.com/tusharmath/Multi-threaded-downloader).
 
-#Installation
+##Installation
 
 Install this globally using the conventional npm installation command.
 
@@ -11,7 +10,7 @@ Install this globally using the conventional npm installation command.
 $ npm install -g mt-console
 ```
 
-#Usage
+##Usage
 
 1. You can get started by using the ```--help``` option. This lists out all the possible operations in mtd.
 
@@ -35,21 +34,12 @@ $ npm install -g mt-console
 
 4. You can also pass custom options such as -
 
-	  a. **--count**
+	  a. ```--count``` To set a custom number of download threads. It defaults to what is set in the [mt-downloader](https://github.com/tusharmath/Multi-threaded-downloader) library which is **2**.
 	  
-		  To set a custom number of download threads. It defaults to what is set in the [mt-downloader](https://github.com/tusharmath/Multi-threaded-downloader) library which is **2**.
-
+	  b. ```--range``` You can specify a custom download range. This feature is particularly useful when you want to download a part of a video file. Say you just want to download the later half of the file, you can then set the range as **50-100**. Its an optional parameter and defaults to **0-100**.
 	  
-	  b. **--range**
-	  
-		  You can specify a custom download range. This feature is particularly useful when you want to download a part of a video file. Say you just want to download the later half of the file, you can then set the range as **50-100**. Its an optional parameter and defaults to **0-100**.
-	  
-	  c. **--port**
-	  
-		  You can specify a custom HTTP port. It defaults to **80**.
+	  c. ```--port``` You can specify a custom HTTP port. It defaults to **80**.
 	
-	  d. **--method**
-	  
-		  You can specify the download method such as PUT and POST by default it is set to GET.
+	  d. ```--method``` You can specify the download method such as PUT and POST by default it is set to GET.
 		  
 If you want to know more about this app you can visit [tusharm.com](http://tusharm.com/articles/mt-downloader). Hope this helps you in downloading your data more efficiently! 
