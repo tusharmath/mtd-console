@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tusharmath/Multi-threaded-downloader.git"
+    "url": "https://github.com/tusharmath/mtd-console"
   },
   "engines": {
     "node": ">= 0.10.0"
