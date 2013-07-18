@@ -4,6 +4,7 @@ var mtd = require('mt-downloader');
 var Analytics = require('./analytics');
 var optimist = require("optimist");
 var Formater = require('./Formaters');
+var Package = require('./Package.json');
 var _ = require('underscore');
 
 
@@ -26,7 +27,7 @@ var _startDownload = function(cParams) {
 	cParams.onEnd = _onEnd;
 	var downloader = new mtd(cParams.file, cParams.url, cParams);
 	downloader.start();
-	console.log('\nMTD Started');
+	console.log('\nMT Console');
 };
 
 
@@ -54,13 +55,18 @@ var argv = optimist.usage('A console app for mt-downloader', {
 	'method': {
 		description: 'Http method [default: GET]',
 		short: 'm'
+	},
+	'version': {
+		description: 'Shows application verion',
+		short: 'v'
 	}
 })
 	.usage('usage:\t$0 [--file[=<path>]] [--url[=<url>]] \tStart a new download\n\t$0 [--file[=<path>]]\t\t\tResume an old download using a .mtd file')
 	.argv;
 
-
-if (!argv.file) {
+if (argv.version) {
+	console.log('MT Console Version:', Package.version);
+} else if (!argv.file) {
 	optimist.showHelp();
 } else {
 	_startDownload(argv);
