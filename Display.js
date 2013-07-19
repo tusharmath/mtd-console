@@ -21,7 +21,7 @@ var _display = function(analytics) {
 };
 
 Display.header = function() {
-    console.log(Formater.rightPad(['Completed', 'Speed', 'Time', 'ETA', 'Status(O, C, F)']));
+    console.log(Formater.rightPad(['Completed', 'Speed', 'Time', 'ETA', 'Status (I, O, C, F)']));
 };
 
 Display.show = _display;

@@ -1,5 +1,5 @@
 var _ = require('underscore');
-var interval = 1000;
+var interval = 100;
 var Display = require('./Display');
 
 
@@ -54,9 +54,11 @@ var _present_threadStatus = function() {
 		memo[thread.connection]++;
 		return memo;
 	}, {
+		idle: 0,
 		open: 0,
 		closed: 0,
 		failed: 0
+
 	});
 };
 

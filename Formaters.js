@@ -43,5 +43,5 @@ exports.rightPad = function(list) {
 };
 
 exports.threadStatusFormater = function(status) {
-	return [status.open, status.closed, status.failed].join(', ');
+	return [status.idle, status.open, status.closed, status.failed].join(', ');
 };
