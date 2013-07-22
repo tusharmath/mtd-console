@@ -64,5 +64,7 @@ $ npm install -g mt-console
 	  g. ```--clear-wd``` : Clears the saved working directory.
 	  
 	  h. ```--timeout``` : Sometimes the connections are established but are not transferring any data. Using this setting you can set the maximum amount of time in **seconds** that it should wait before quitting.
+
+	  i. ```--auto-name``` : Generates the file name on its own by parsing the last element of the url. You will not be required to set the ```--file``` parameter while starting a new download. It will also automatically prepend the generated file name with the working directory specified by the ```--set-wd``` option.
 		  
 If you want to know more about this app you can visit [tusharm.com](http://tusharm.com/articles/mt-downloader). Hope this helps you in downloading your data more efficiently! 

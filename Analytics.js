@@ -1,5 +1,5 @@
 var _ = require('underscore');
-var interval = 100;
+var interval = 1000;
 var Display = require('./Display');
 
 
