@@ -1,29 +1,29 @@
 {
-	"name": "mt-console",
-	"description": "A Console application for mt-downloader",
-	"version": "0.0.6",
-	"author": {
-		"name": "Tushar Mathur <tusharmath@gmail.com>",
-		"url": "http://tusharm.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/tusharmath/mtd-console"
-	},
-	"engines": {
-		"node": ">= 0.10.0"
-	},
-	"bin": {
-		"mtd": "./Console.js"
-	},
-	"preferGlobal": true,
-	"dependencies": {
-		"underscore": "1.5.x",
-		"minimist": "0.0.x",
-		"mt-downloader": "0.2.x",
-		"moment": "2.0.x"
-	},
-	"devDependencies": {
-		"grunt-release": "0.3.x"
-	}
+  "name": "mt-console",
+  "description": "A Console application for mt-downloader",
+  "version": "0.0.7",
+  "author": {
+    "name": "Tushar Mathur <tusharmath@gmail.com>",
+    "url": "http://tusharm.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tusharmath/mtd-console"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "bin": {
+    "mtd": "./Console.js"
+  },
+  "preferGlobal": true,
+  "dependencies": {
+    "underscore": "1.5.x",
+    "minimist": "0.0.x",
+    "mt-downloader": "0.2.x",
+    "moment": "2.0.x"
+  },
+  "devDependencies": {
+    "grunt-release": "0.3.x"
+  }
 }
