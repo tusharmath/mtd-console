@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 var Db = function(file) {
-	this.file = file;
+	this.file = __dirname + file;
 };
 
 var readFile = function(callback) {

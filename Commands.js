@@ -32,7 +32,7 @@ var _auto_name = function(url, callback) {
 };
 
 var _show_help = function() {
-	console.log('Visit: https://github.com/tusharmath/mtd-console');
+	console.log('To know more visit [https://github.com/tusharmath/mtd-console]');
 };
 
 var _set_wd = function(args) {
