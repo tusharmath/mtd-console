@@ -32,8 +32,8 @@ exports.byteFormater = function(bytes) {
 exports.speedFormater = function(speed) {
 	var str;
 	speed *= 8;
-	if (speed > 1024 * 1024) str = _floor(speed * 100 / (1024 * 1024)) / 100 + ' Mbps';
-	else if (speed > 1024) str = _floor(speed * 100 / 1024) / 100 + ' Kbps';
+	if (speed > 1024 * 1024) str = _floor(speed * 10 / (1024 * 1024)) / 10 + ' Mbps';
+	else if (speed > 1024) str = _floor(speed * 10 / 1024) / 10 + ' Kbps';
 	else str = _floor(speed) + ' bps';
 	return str + ' ';
 };

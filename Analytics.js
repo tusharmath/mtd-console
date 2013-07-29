@@ -33,7 +33,7 @@ var _present_downloaded = function() {
 };
 
 var _total_completed = function() {
-	this.total.completed = Math.floor((this.total.downloaded) * 10000 / this.total.size) / 100;
+	this.total.completed = Math.floor((this.total.downloaded) * 1000 / this.total.size) / 10;
 };
 
 

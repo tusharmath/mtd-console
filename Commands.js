@@ -59,6 +59,8 @@ var _start_download = function(args) {
 	args.onStart = function(data) {
 
 		console.log('Size:', f.byteFormater(data.size));
+		console.log('Url:', data.url);
+		if (data.headers && data.headers['content-disposition']) console.log('Name:', data.headers['content-disposition'].split('filename=')[1].replace(/[\"]/g, ''));
 		analytics.start(data.threads);
 
 	};
@@ -68,7 +70,7 @@ var _start_download = function(args) {
 		if (err) console.error(err);
 		else console.log('Downloaded');
 	};
-	if (args['auto-name'] === true) {
+	if (args['url'] !== undefined && args['file'] === undefined) {
 		_auto_name(args.url, function(file) {
 			args.file = file;
 			var downloader = new mtd(file, args.url, args);
