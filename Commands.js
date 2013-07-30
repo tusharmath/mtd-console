@@ -60,7 +60,7 @@ var _start_download = function(args) {
 
 		console.log('Size:', f.byteFormater(data.size));
 		console.log('Url:', data.url);
-		if (data.headers && data.headers['content-disposition']) console.log('Name:', data.headers['content-disposition'].split('filename=')[1].replace(/[\"]/g, ''));
+		if (data.headers && data.headers['content-disposition'] && data.headers['content-disposition'].indexOf('filename=') > -1) console.log('Attachment name:', data.headers['content-disposition'].split('filename=')[1].replace(/[\"]/g, ''));
 		analytics.start(data.threads);
 
 	};
