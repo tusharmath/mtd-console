@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Mtd-console by tusharmath</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Mtd-console</h1>
+        <p>A console application for mt-downloader</p>
+
+        <p class="view"><a href="https://github.com/tusharmath/mtd-console">View the Project on GitHub <small>tusharmath/mtd-console</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/tusharmath/mtd-console/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/tusharmath/mtd-console/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/tusharmath/mtd-console">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="mt-console" class="anchor" href="#mt-console"><span class="octicon octicon-link"></span></a>mt-console</h1>
+
+<p>A platform independent console application for <a href="https://github.com/tusharmath/Multi-threaded-downloader">mt-downloader</a>. This app is only an abstraction of what the original library can do. To get a complete list of features you should see <a href="https://github.com/tusharmath/Multi-threaded-downloader">mt-downloader</a>.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Install this globally using the conventional npm installation command.</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>npm install -g mt-console
+</pre></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<ol>
+<li>
+<p>You can get started by using the <code>--help</code> option. This lists out all the possible operations in mtd.</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>mtd --help
+</pre></div>
+</li>
+<li>
+<p>To start a new download you will have to provide a <code>--url</code> and a download <code>--file</code> path.</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>mtd --url<span class="o">=</span><span class="s2">"http://path/to/file.zip"</span> --file<span class="o">=</span><span class="s2">"/Downloads/file.zip"</span>
+</pre></div>
+
+<p><strong>NOTE:</strong> Make sure you use the double quotes because some times if you have spaces in your paths it creates problems.</p>
+</li>
+<li>
+<p>To resume an old download, you just need to provide the path to the file with .mtd extension that is temporarily created at the time of download.</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>mtd --file<span class="o">=</span><span class="s2">"/Downloads/file.zip.mtd"</span>
+</pre></div>
+</li>
+<li>
+<p>You can also pass custom options such as -</p>
+
+<p>a. <code>--count</code> : To set a custom number of download threads. It defaults to what is set in the <a href="https://github.com/tusharmath/Multi-threaded-downloader">mt-downloader</a> library.</p>
+
+<p>b. <code>--range</code> : You can specify a custom download range. This feature is particularly useful when you want to download a part of a video file. Say you just want to download the later half of the file, you can then set the range as <strong>50-100</strong>. Its an optional parameter and defaults to <strong>0-100</strong>.</p>
+
+<p>c. <code>--port</code> : You can specify a custom HTTP port. It defaults to <strong>80</strong>.</p>
+
+<p>d. <code>--method</code> : You can specify the download method such as <strong>PUT</strong> and <strong>POST</strong> by default it is set to <strong>GET</strong>.</p>
+
+<p>e. <code>--wd</code> : Shows the current working directory. You can update this using <code>--set-wd</code> option.</p>
+
+<p>f. <code>--set-wd</code> : You can set you current working directory using this command. This is particularly helpful if you want to avoid typing the complete download path with the <code>--file</code> parameter. Instead you can set a common path for downloads and just specify the name of the file. The app will automatically combine the two and create the complete file path.</p>
+
+<div class="highlight"><pre>  <span class="nv">$ </span>mtd --set-wd<span class="o">=</span><span class="s2">"/Users/tusharmathur/Downloads/"</span>
+  <span class="nv">$ </span>Working directory updated to /Users/tusharmathur/Downloads/
+
+  <span class="nv">$ </span>mtd --wd
+  Working directory: /Users/tusharmathur/Downloads/
+
+  <span class="nv">$ </span>mtd --url<span class="o">=</span><span class="s2">"http://path/to/file_one.zip"</span> --file<span class="o">=</span><span class="s2">"file_one.zip"</span>
+  <span class="nv">$ </span>mtd --url<span class="o">=</span><span class="s2">"http://path/to/file_two.zip"</span> --file<span class="o">=</span><span class="s2">"file_two.zip"</span>
+
+</pre></div>
+
+<p>Both the files <em>file_one.zip</em> and <em>file_two.zip</em> will be downloaded at the same location <code>/Users/tusharmathur/Downloads/</code> because that is the default download path. </p>
+
+<p>g. <code>--clear-wd</code> : Clears the saved working directory.</p>
+
+<p>h. <code>--timeout</code> : Sometimes the connections are established but are not transferring any data. Using this setting you can set the maximum amount of time in <strong>seconds</strong> that it should wait before quitting.</p>
+
+<p>i. <code>--auto-name</code> : Generates the file name on its own by parsing the last element of the url. You will not be required to set the <code>--file</code> parameter while starting a new download. It will also automatically prepend the generated file name with the working directory specified by the <code>--set-wd</code> option.</p>
+</li>
+</ol><p>If you want to know more about this app you can visit <a href="http://tusharm.com/articles/mt-downloader">tusharm.com</a>. Hope this helps you in downloading your data more efficiently! </p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/tusharmath">tusharmath</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
