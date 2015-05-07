@@ -1,7 +1,7 @@
 {
   "name": "mt-console",
   "description": "A Console application for mt-downloader",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": {
     "name": "Tushar Mathur <tusharmath@gmail.com>",
     "url": "http://tusharm.com"
