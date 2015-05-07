@@ -3,7 +3,7 @@ var minimist = require('minimist');
 var Analytics = require('./Analytics');
 var mtd = require('mt-downloader');
 var f = require('./Formaters');
-var Package = require('./Package.json');
+var Package = require('./package.json');
 var _ = require('underscore');
 var Db = require('./Db');
 
