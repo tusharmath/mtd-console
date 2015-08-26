@@ -7,7 +7,9 @@ var Package = require('./package.json');
 var _ = require('underscore');
 var Db = require('./Db');
 var fs = require('fs');
-var wrap = require('wordwrap')
+
+var wrap = require('wordwrap');
+var path = require('path');
 
 var log = console.log;
 
@@ -37,9 +39,21 @@ var _auto_name = function (url, callback) {
 };
 
 var _show_help = function () {
-	var text = fs.readFileSync(__dirname + '/usage').toString().split('\n');
-	for (i in text){
-		console.log(wrap(1,80)(text[i]));
+	var text = fs.readFileSync(path.join(__dirname, 'usage')).toString().split('\n');
+	var line;
+	for(i in text) {
+		line = text[i];
+		if(line){
+			var s;
+			if (line.indexOf('::') > 0) {
+				var a = wrap(1,20)(line.split('::')[0]);					
+				var b = wrap(20,80)(line.split('::')[1]);
+				s = a + b.substr(a.length)
+			} else { 
+				s = wrap(1,80)(line); 
+			};
+		console.log(s);
+		}
 	}
 };
 
