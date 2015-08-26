@@ -6,6 +6,7 @@ var f = require('./Formaters');
 var Package = require('./package.json');
 var _ = require('underscore');
 var Db = require('./Db');
+var fs = require('fs')
 
 var log = console.log;
 
@@ -35,6 +36,8 @@ var _auto_name = function (url, callback) {
 };
 
 var _show_help = function () {
+	var text = fs.readFileSync(__dirname + '/usage').toString().split('\n');
+	console.log(text);
 	console.log('To know more visit [https://github.com/tusharmath/mtd-console]');
 };
 
