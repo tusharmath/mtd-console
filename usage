@@ -3,8 +3,8 @@ Usage: mtd --url=URL --file=FILE [options]
 
 Mandatory arguments:
 
---url=URL           url to download
---file=FILE         path to local file
+--url=URL::url to download
+--file=FILE::path to local file
 
 Example: 
     mtd --url="http://path/to/file.zip" --file="/Downloads/file.zip"
@@ -18,18 +18,18 @@ Example: mtd --file="/Downloads/file.zip.mtd"
 Options:
 
 
---help              print this screen
+--help::print this screen
 
---count=COUNT       set number of download threads to COUNT. It defaults to what is set in the mt-downloader library.
+--count=COUNT::Set number of download threads to COUNT. It defaults to what is set in the mt-downloader library.
 
---range=X-Y         Specify a custom download range in percent. Set the range as 50-100 to download only the second half of a file. Defaults to 0-100.
+--range=X-Y::Specify a custom download range in percent. Set the range as 50-100 to download only the second half of a file. Defaults to 0-100.
 
---port=PORT         HTTP port to use. It defaults to 80.
+--port=PORT::HTTP port to use. It defaults to 80.
 
---method=           METHOD HTTP method, e.g. PUT or POST; defaults to GET.
+--method=METHOD::HTTP method, e.g. PUT or POST; defaults to GET.
 
---set-wd=DIR        Set the working directory where file(s) will be downloaded. The  complete file path will be DIR/FILE
---wd                Show the current working directory. Use --set-wd to update its value.
+--set-wd=DIR::Set the working directory where file(s) will be downloaded. The complete file path will be DIR/FILE
+--wd::Show the current working directory. Use --set-wd to update its value.
 
 Example:
 
@@ -45,13 +45,13 @@ mtd --url="http://path/to/file_two.zip" --file="file_two.zip"
 Both file_one.zip and file_two.zip will be downloaded at  
 /Users/tusharmathur/Downloads/ 
 
---clear-wd          Clears the saved working directory.
+--clear-wd::Clears the saved working directory.
 
---timeout=N         Set timeout to SECONDS; this is the time that the program should wait before quitting in case no data is transfered.
+--timeout=N::Set timeout to N seconds. This is the time that the program should wait before quitting in case no data is transfered.
 
---auto-name         Automatically generate a file name from the last element of the url. The --set-wd option will still be honored.
+--auto-name::Automatically generate a file name from the last element of the url. The --set-wd option will still be honored.
 
---headers=HEADERS   Pass custom HEADERS as key:value pairs separated by semicolons, e.g:
+--headers=HEADERS::Pass custom HEADERS as key:value pairs separated by semicolons, e.g:
 
 mtd --url="http://path/to/file_one.zip" --file="file_one.zip" --headers="user-agent:crawl-bot;cookie:abc%3D100%3Bpqr%3D200"
 
