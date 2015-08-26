@@ -1,6 +1,5 @@
 Usage: mtd --url=URL --file=FILE [options]
 
-mtd --help: print this screen
 
 Mandatory arguments:
 
@@ -17,6 +16,9 @@ Example: mtd --file="/Downloads/file.zip.mtd"
 
 
 Options:
+
+
+--help: print this screen
 
 --count=COUNT   set number of download threads to COUNT. It defaults to what is set in the mt-downloader library.
 
