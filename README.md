@@ -2,6 +2,8 @@
 
 A platform independent console application for [mt-downloader](https://github.com/tusharmath/Multi-threaded-downloader). This app is only an abstraction of what the original library can do. To get a complete list of features you should see [mt-downloader](https://github.com/tusharmath/Multi-threaded-downloader).
 
+This fork makes the help option work as advertised
+
 ##Installation
 
 Install this globally using the conventional npm installation command.
