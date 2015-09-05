@@ -26,7 +26,7 @@ $ npm install -g mt-console
     $ mtd --url="http://path/to/file.zip" --file="/Downloads/file.zip"
     ```
 
-    **NOTE:** Make sure you use the double quotes because some times if you have spaces in your paths it creates problems.
+    **NOTE:** Make sure to use the double quotes to avoid possible problems.
 
 3. To resume an old download, you just need to provide the path to the file with .mtd extension that is temporarily created at the time of download.
 
@@ -49,18 +49,18 @@ $ npm install -g mt-console
     f. ```--set-wd``` : You can set you current working directory using this command. This is particularly helpful if you want to avoid typing the complete download path with the ```--file``` parameter. Instead you can set a common path for downloads and just specify the name of the file. The app will automatically combine the two and create the complete file path.
 
     ```bash
-    $ mtd --set-wd="/Users/tusharmathur/Downloads/"
-    $ Working directory updated to /Users/tusharmathur/Downloads/
+    $ mtd --set-wd="/Users/user/Downloads/"
+    $ Working directory updated to /Users/user/Downloads/
 
     $ mtd --wd
-    Working directory: /Users/tusharmathur/Downloads/
+    Working directory: /Users/user/Downloads/
 
     $ mtd --url="http://path/to/file_one.zip" --file="file_one.zip"
     $ mtd --url="http://path/to/file_two.zip" --file="file_two.zip"
 
     ```
 
-    Both the files *file_one.zip* and *file_two.zip* will be downloaded at the same location ```/Users/tusharmathur/Downloads/``` because that is the default download path.
+    Both the files *file_one.zip* and *file_two.zip* will be downloaded at the same location ```/Users/users/Downloads/``` because that is the default download path.
 
     g. ```--clear-wd``` : Clears the saved working directory.
 
@@ -75,5 +75,3 @@ $ npm install -g mt-console
     ```
 
     **NOTE:** make sure you encode the header values parameters while sending else they might get escaped while parsing.
-
-If you want to know more about this app you can visit [tusharm.com](http://tusharm.com/articles/mt-downloader). Hope this helps you in downloading your data more efficiently!
