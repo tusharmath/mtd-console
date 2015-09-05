@@ -60,7 +60,7 @@ $ npm install -g mt-console
 
     ```
 
-    Both the files *file_one.zip* and *file_two.zip* will be downloaded at the same location ```/Users/users/Downloads/``` because that is the default download path.
+    Both *file_one.zip* and *file_two.zip* will be downloaded at the same location ```/Users/user/Downloads/``` because that is the default download path.
 
      ```--clear-wd``` : Clears the saved working directory.
 
