@@ -14,13 +14,13 @@ $ npm install -g mt-console
 
 ##Usage
 
-You can get started by using the ```--help``` option. This lists out all the possible operations in mtd.
+- You can get started by using the ```--help``` option. This lists out all the possible operations in mtd.  
 
     ```bash
-    $ mtd --help
+     $ mtd --help
     ```
 
-To start a new download you will have to provide a ```--url``` and a download ```--file``` path.
+- To start a new download you will have to provide a ```--url``` and a download ```--file``` path.
 
     ```bash
     $ mtd --url="http://path/to/file.zip" --file="/Downloads/file.zip"
@@ -28,13 +28,13 @@ To start a new download you will have to provide a ```--url``` and a download ``
 
     **NOTE:** Make sure to use the double quotes to avoid possible problems.
 
-To resume an old download, you just need to provide the path to the file with .mtd extension that is temporarily created at the time of download.
+- To resume an old download, you just need to provide the path to the file with .mtd extension that is temporarily created at the time of download.
 
     ```bash
     $ mtd --file="/Downloads/file.zip.mtd"
     ```
 
-You can also pass custom options such as:
+- You can also pass custom options such as:
 
      ```--count``` : To set a custom number of download threads. It defaults to what is set in the [mt-downloader](https://github.com/tusharmath/Multi-threaded-downloader) library.
 
