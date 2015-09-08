@@ -21,7 +21,8 @@
     "underscore": "1.5.x",
     "minimist": "0.0.x",
     "mt-downloader": "0.2.x",
-    "moment": "2.0.x"
+    "moment": "2.0.x",
+    "wordwrap": "1.0.x"
   },
   "devDependencies": {
     "grunt-release": "0.3.x"
