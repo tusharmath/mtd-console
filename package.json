@@ -18,12 +18,12 @@
   },
   "preferGlobal": true,
   "dependencies": {
-    "underscore": "1.5.x",
-    "minimist": "0.0.x",
-    "mt-downloader": "0.2.x",
-    "moment": "2.0.x"
+    "underscore": "~1.8.3",
+    "minimist": "~1.2.0",
+    "mt-downloader": "~2.2.2",
+    "moment": "~2.18.1"
   },
   "devDependencies": {
-    "grunt-release": "0.3.x"
+    "grunt-release": "~0.14.0"
   }
 }
