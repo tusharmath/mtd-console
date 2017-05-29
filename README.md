@@ -1,5 +1,7 @@
 #mt-console
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tusharmath/mtd-console.svg)](https://greenkeeper.io/)
+
 A platform independent console application for [mt-downloader](https://github.com/tusharmath/Multi-threaded-downloader). This app is only an abstraction of what the original library can do. To get a complete list of features you should see [mt-downloader](https://github.com/tusharmath/Multi-threaded-downloader).
 
 ##Installation
